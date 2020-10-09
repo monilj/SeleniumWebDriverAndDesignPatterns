@@ -10,15 +10,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 public class SearchSuggestionsComponent extends AbstractComponent {
-
-    private WebDriverWait wait;
-
     @FindBy(css = "li.sbct")
     private List<WebElement> googleSuggestions;
 
     public SearchSuggestionsComponent(final WebDriver driver) {
-        this.wait = new WebDriverWait(driver, 10);
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     public void clickOnSuggestionByIndex(int index) {
@@ -27,7 +23,6 @@ public class SearchSuggestionsComponent extends AbstractComponent {
 
     @Override
     public boolean isDisplay() {
-        this.wait.until((driver -> this.googleSuggestions.size() > 5));
-        return false;
+        return this.wait.until((driver -> this.googleSuggestions.size() > 5));
     }
 }
