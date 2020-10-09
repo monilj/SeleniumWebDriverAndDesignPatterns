@@ -1,5 +1,7 @@
-package SingleResponsibilityPrinciple;
+package SingleResponsibilityPrinciple.GoogleSearchResultPage;
 
+import SingleResponsibilityPrinciple.common.SearchBoxComponent;
+import SingleResponsibilityPrinciple.common.SearchSuggestionsComponent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 

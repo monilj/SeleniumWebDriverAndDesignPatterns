@@ -1,8 +1,8 @@
-package SingleResponsibilityPrinciple;
+package SingleResponsibilityPrinciple.googleMainPage;
 
-import com.sun.org.apache.xml.internal.dtm.ref.DTMDefaultBaseIterators;
+import SingleResponsibilityPrinciple.common.SearchBoxComponent;
+import SingleResponsibilityPrinciple.common.SearchSuggestionsComponent;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class GoogleMainPage {

@@ -1,13 +1,12 @@
 package SingleResponsibilityPrinciple;
 
 import BaseTestPackage.BaseTest;
-import com.google.common.util.concurrent.Uninterruptibles;
+import SingleResponsibilityPrinciple.GoogleSearchResultPage.GoogleResultPage;
+import SingleResponsibilityPrinciple.googleMainPage.GoogleMainPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 public class GoogleSearchTest extends BaseTest {
     private GoogleMainPage googleMainPage;
@@ -21,8 +20,6 @@ public class GoogleSearchTest extends BaseTest {
 
     @Test(dataProvider = "getData")
     public void searchTestWorkFlow(String userInput , int index){
-//        String userInput = "Selenium WebDriver";
-//        int index = 3;
 
         googleMainPage.goToGoogleHomePage();
         Assert.assertTrue(googleMainPage.getSearchBox().isDisplay());
@@ -46,7 +43,7 @@ public class GoogleSearchTest extends BaseTest {
     @DataProvider
     public Object[][] getData(){
         return new Object[][]{
-                {"Selenium", 3},
+                {"Selenium WebDriver", 3},
                 {"Docker", 2 }
         };
     }

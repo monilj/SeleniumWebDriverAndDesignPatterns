@@ -1,4 +1,4 @@
-package SingleResponsibilityPrinciple;
+package SingleResponsibilityPrinciple.common;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
