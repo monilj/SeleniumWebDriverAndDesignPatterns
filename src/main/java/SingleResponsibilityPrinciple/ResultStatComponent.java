@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class ResultStatComponent extends AbstractComponent {
 
-    @FindBy(id="resultStats")
+    @FindBy(id="result-stats")
     private WebElement resultStat;
     public ResultStatComponent(WebDriver driver) {
         super(driver);

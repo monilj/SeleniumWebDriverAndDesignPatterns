@@ -30,7 +30,7 @@ public class GoogleSearchTest extends BaseTest {
         Assert.assertTrue(googleMainPage.getSearchSuggestions().isDisplay());
 
         googleMainPage.getSearchSuggestions().clickOnSuggestionByIndex(index);
-        Assert.assertTrue(googleResultPage.getSearchSuggestionsComponent().isDisplay());
+        Assert.assertTrue(googleResultPage.getSearchPageMenuComponent().isDisplay());
 
         googleResultPage.getSearchBoxComponent().enterAString(userInput);
         Assert.assertTrue(googleResultPage.getSearchSuggestionsComponent().isDisplay());
