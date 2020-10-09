@@ -4,6 +4,7 @@ import BaseTestPackage.BaseTest;
 import com.google.common.util.concurrent.Uninterruptibles;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -18,10 +19,10 @@ public class GoogleSearchTest extends BaseTest {
         this.googleResultPage = new GoogleResultPage(driver);
     }
 
-    @Test
-    public void searchTestWorkFlow(){
-        String userInput = "Selenium WebDriver";
-        int index = 3;
+    @Test(dataProvider = "getData")
+    public void searchTestWorkFlow(String userInput , int index){
+//        String userInput = "Selenium WebDriver";
+//        int index = 3;
 
         googleMainPage.goToGoogleHomePage();
         Assert.assertTrue(googleMainPage.getSearchBox().isDisplay());
@@ -41,5 +42,12 @@ public class GoogleSearchTest extends BaseTest {
 
         System.out.println(googleResultPage.getResultStatComponent().getResultStats());
 
+    }
+    @DataProvider
+    public Object[][] getData(){
+        return new Object[][]{
+                {"Selenium", 3},
+                {"Docker", 2 }
+        };
     }
 }
