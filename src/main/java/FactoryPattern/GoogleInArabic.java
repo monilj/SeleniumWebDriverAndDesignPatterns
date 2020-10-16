@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class GoogleInArabic extends GoogleInEnglish {
+ class GoogleInArabic extends GoogleInEnglish {
 
     @FindBy(css = "a[dir='rtl']")
     private WebElement arabicLink;

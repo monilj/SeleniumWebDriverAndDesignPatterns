@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GoogleInFrench extends GoogleInEnglish {
+ class GoogleInFrench extends GoogleInEnglish {
 
     @FindBy(linkText = "Français")
     private WebElement frenchLink;
