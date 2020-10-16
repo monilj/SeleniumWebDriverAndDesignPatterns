@@ -1,21 +1,26 @@
 package FactoryPattern;
 
+import com.google.common.util.concurrent.Uninterruptibles;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class GoogleInEnglish extends GooglePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    @FindBy(id="searchBox")
+    @FindBy(name="q")
     private WebElement searchBox;
 
-    @FindBy(name="btnk")
+    @FindBy(name="btnK")
     private WebElement searchButton;
 
     @FindBy(css = "div.rc")
@@ -35,8 +40,8 @@ public class GoogleInEnglish extends GooglePage {
     @Override
     public void search(String userInput) {
         searchBox.sendKeys(userInput);
-        searchButton.click();
-
+        searchBox.sendKeys(Keys.TAB);
+        searchButton.submit();
     }
 
     @Override
