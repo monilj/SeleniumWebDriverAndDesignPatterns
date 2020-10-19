@@ -4,6 +4,8 @@ import com.sun.org.apache.xpath.internal.operations.Or;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.Map;
+
 public class PaymentScreen {
     private WebDriver driver;
     private UserInformation userInformation;
@@ -16,6 +18,9 @@ public class PaymentScreen {
         this.order = PageFactory.initElements(driver, Order.class);
     }
 
+    public void goToSite(){
+        this.driver.get("https://vins-udemy.s3.amazonaws.com/ds/strategy.html");
+    }
     public UserInformation getUserInformation() {
         return userInformation;
     }
@@ -29,7 +34,7 @@ public class PaymentScreen {
         PageFactory.initElements(driver,this.paymentOption);
     }
 
-    public PaymentOption getPaymentOption() {
-        return paymentOption;
+    public void pay(Map<String,String> paymentDetails) {
+        this.paymentOption.enterPaymentInformation(paymentDetails);
     }
 }
