@@ -38,7 +38,7 @@ public class PaymentScreenTest extends BaseTest {
         cc.put("cvv","124");
 
         Map<String,String> nb = new HashMap<>();
-        nb.put("bank","Random");
+        nb.put("bank","WELLS FARGO");
         nb.put("account","myac224");
         nb.put("pin","1221");
         return new Object[][]{
