@@ -1,10 +1,7 @@
 package StrategyDesignPattern;
 
 import BaseTestPackage.BaseTest;
-import StrategyPattern.CreditCard;
-import StrategyPattern.NetBanking;
-import StrategyPattern.PaymentOption;
-import StrategyPattern.PaymentScreen;
+import StrategyPattern.*;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -20,11 +17,11 @@ public class PaymentScreenTest extends BaseTest {
         this.paymentScreen = new PaymentScreen(this.driver);
     }
     @Test(dataProvider = "getData")
-    public void paymentTest(PaymentOption paymentOption, Map<String,String> paymentDetails)
+    public void paymentTest(String option, Map<String,String> paymentDetails)
     {
         this.paymentScreen.goToSite();
         this.paymentScreen.getUserInformation().enterDetails("John","Smith","sss@gmail.com");
-        this.paymentScreen.setPaymentOption(paymentOption);
+        this.paymentScreen.setPaymentOption(PaymentOptionFactory.get(option));
         this.paymentScreen.pay(paymentDetails);
         String orderNumber= this.paymentScreen.getOrder().placeOrder();
         System.out.println(orderNumber);
@@ -42,8 +39,8 @@ public class PaymentScreenTest extends BaseTest {
         nb.put("account","myac224");
         nb.put("pin","1221");
         return new Object[][]{
-                {new CreditCard(),cc},
-                {new NetBanking(),nb}
+                {"CC",cc},
+                {"NB",nb}
         };
     }
 }
