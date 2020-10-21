@@ -19,6 +19,7 @@ public class HomePageTest extends BaseTest {
         this.homePage.goToSite();
         this.homePage.getElementValidators()
                 .stream()
+                .parallel()
                 .map(ev -> ev.validate())
                 .forEach(b -> Assert.assertTrue(b));
     }
