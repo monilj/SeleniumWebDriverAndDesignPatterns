@@ -60,6 +60,21 @@ public class HomePage {
     public void goToSite() {
         this.driver.get("https://www.wrappixel.com/demos/admin-templates/admin-pro/main/ui-notification.html");
     }
+    public List<ElementValidator> getElementValidators() {
+        return Arrays.asList(
+                //notification Validation
+                new NotificationValidator(infoButton, infoAlert),
+                new NotificationValidator(successButton, successAlert),
+                new NotificationValidator(warningButton, warnAlert),
+                new NotificationValidator(dangerButton, dangerAlert),
+
+                //Dismiss Alert
+                new DismissalAlertValidator(dismissInfoAlert),
+                new DismissalAlertValidator(dismissSuccessAlert),
+                new DismissalAlertValidator(dismissWarnAlert),
+                new DismissalAlertValidator(dismissDangerAlert)
+        );
+    }
 
 
 }
