@@ -15,13 +15,13 @@ public class HomePage {
     @FindBy(css = ".tst1.btn.btn-info")
     private WebElement infoButton;
 
-    @FindBy(css = ".tst1.btn.btn-warning")
+    @FindBy(css = ".tst2.btn.btn-warning")
     private WebElement warningButton;
 
-    @FindBy(css = ".tst1.btn.btn-success")
+    @FindBy(css = ".tst3.btn.btn-success")
     private WebElement successButton;
 
-    @FindBy(css = ".tst1.btn.btn-danger")
+    @FindBy(css = ".tst4.btn.btn-danger")
     private WebElement dangerButton;
 
     //notifications
@@ -38,19 +38,17 @@ public class HomePage {
     private WebElement dangerAlert;
 
     //dismissal Alerts
-    @FindBy(css = "div.card-body div.row div:nth-child(2) div.alert-info")
+    @FindBy(xpath = "//h4[text()='Dissmissal Alert']//following-sibling::div[contains(@class,'alert-info')]//button[@class='close']")
     private WebElement dismissInfoAlert;
 
-    @FindBy(css = "div.card-body div.row div:nth-child(2) div.alert-success")
+    @FindBy(xpath = "//h4[text()='Dissmissal Alert']//following-sibling::div[contains(@class,'alert-success')]//button[@class='close']")
     private WebElement dismissSuccessAlert;
 
-    @FindBy(css = "div.card-body div.row div:nth-child(2) div.alert-danger")
+    @FindBy(xpath = "//h4[text()='Dissmissal Alert']//following-sibling::div[contains(@class,'alert-danger')]//button[@class='close']")
     private WebElement dismissDangerAlert;
 
-    @FindBy(css = "div.card-body div.row div:nth-child(2) div.alert-warning")
+    @FindBy(xpath = "//h4[text()='Dissmissal Alert']//following-sibling::div[contains(@class,'alert-warning')]//button[@class='close']")
     private WebElement dismissWarnAlert;
-
-
 
     public HomePage(final WebDriver driver) {
         this.driver = driver;

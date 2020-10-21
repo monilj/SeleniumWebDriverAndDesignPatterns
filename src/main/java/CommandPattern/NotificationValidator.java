@@ -21,6 +21,7 @@ public class NotificationValidator extends ElementValidator {
         boolean appearance = this.notification.isDisplayed(); //true
         Uninterruptibles.sleepUninterruptibly(4, TimeUnit.SECONDS);
         boolean disappearance = this.notification.isDisplayed(); //false
+        System.out.println("first pass");
         return appearance && (!disappearance); // will be true
     }
 
