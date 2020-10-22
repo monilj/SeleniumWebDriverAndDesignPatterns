@@ -9,18 +9,18 @@ import org.testng.annotations.Test;
 public class HomePageTest extends BaseTest {
     private HomePage homePage;
 
-    @BeforeTest
-    private void setHomePage() {
-        this.homePage = new HomePage(driver);
-    }
+        @BeforeTest
+        private void setHomePage() {
+            this.homePage = new HomePage(driver);
+        }
 
-    @Test
-    public void homePageTest() {
-        this.homePage.goToSite();
-        this.homePage.getElementValidators()
-                .stream()
-                .parallel()
-                .map(ev -> ev.validate())
-                .forEach(b -> Assert.assertTrue(b));
+        @Test
+        public void homePageTest() {
+            this.homePage.goToSite();
+            this.homePage.getElementValidators()
+                    .stream()
+                    .parallel()
+                    .map(ev -> ev.validate())
+                    .forEach(b -> Assert.assertTrue(b));
+        }
     }
-}
