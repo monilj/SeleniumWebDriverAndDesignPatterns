@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Set;
+
 public class eBayShopping extends ShoppingTemplate{
 
     private WebDriver driver;
@@ -52,7 +54,15 @@ public class eBayShopping extends ShoppingTemplate{
 
     @Override
     public void buy() {
-        wait.until((driver1 -> price.isDisplayed()));
-        System.out.println(this.price.getText());
+        driver.getTitle();
+        String parentWindow = driver.getWindowHandle();
+        Set<String> handles =  driver.getWindowHandles();
+        for(String windowHandle  : handles) {
+            if (!windowHandle.equals(parentWindow)) {
+                driver.switchTo().window(windowHandle);
+                wait.until((driver1 -> price.isDisplayed()));
+                System.out.println(this.price.getText());
+            }
+        }
     }
 }

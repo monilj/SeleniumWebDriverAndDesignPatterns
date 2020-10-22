@@ -1,5 +1,6 @@
 package TemplatePattern;
 
+import com.google.common.util.concurrent.Uninterruptibles;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import sun.awt.windows.WEmbeddedFrame;
 
 import java.sql.Time;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class AmazonShopping extends ShoppingTemplate {
     private WebDriver driver;
@@ -17,13 +20,13 @@ public class AmazonShopping extends ShoppingTemplate {
     @FindBy(id = "twotabsearchtextbox")
     private WebElement searchBox;
 
-    @FindBy(css ="input.nav-input")
+    @FindBy(css ="input[value='Go']")
     private WebElement searchBtn;
 
-    @FindBy(css = "span.a-size-medium")
+        @FindBy(css = "span.a-size-medium")
     private WebElement item;
 
-    @FindBy(id = "priceblock_dealprice")
+    @FindBy(xpath = "//span[@id='priceblock_ourprice']")
     private WebElement price;
 
     public AmazonShopping(final WebDriver driver,String product)
@@ -46,13 +49,21 @@ public class AmazonShopping extends ShoppingTemplate {
 
     @Override
     public void selectProduct() {
-        wait.until((driver1 -> item.isDisplayed()));
-        item.click();
-    }
+                wait.until((driver1 -> item.isDisplayed()));
+                item.click();
+       }
 
     @Override
     public void buy() {
-        wait.until((driver1 -> price.isDisplayed()));
-        System.out.println(this.price.getText());
+        driver.getTitle();
+        String parentWindow = driver.getWindowHandle();
+        Set<String> handles =  driver.getWindowHandles();
+        for(String windowHandle  : handles) {
+            if (!windowHandle.equals(parentWindow)) {
+                driver.switchTo().window(windowHandle);
+                wait.until((driver1 -> price.isDisplayed()));
+                System.out.println(this.price.getText());
+            }
+        }
     }
 }
