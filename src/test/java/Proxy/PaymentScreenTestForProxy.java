@@ -1,7 +1,7 @@
-package StrategyDesignPattern;
+package Proxy;
+
 
 import BaseTestPackage.BaseTest;
-import StrategyPattern.*;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -9,11 +9,13 @@ import org.testng.annotations.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PaymentScreenTest extends BaseTest {
+public class PaymentScreenTestForProxy extends BaseTest {
 
     private PaymentScreen paymentScreen;
+
     @BeforeTest
     public void setPaymentScreen(){
+        System.setProperty("env","QA");
         this.paymentScreen = new PaymentScreen(this.driver);
     }
     @Test(dataProvider = "getData")
