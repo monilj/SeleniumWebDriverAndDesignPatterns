@@ -1,5 +1,8 @@
 package TemplatePattern;
 
+import TemplatePattern.pages.AmazonProductDescriptionPage;
+import TemplatePattern.pages.AmazonResultPage;
+import TemplatePattern.pages.AmazonSearchPage;
 import com.google.common.util.concurrent.Uninterruptibles;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,56 +17,39 @@ import java.util.concurrent.TimeUnit;
 
 public class AmazonShopping extends ShoppingTemplate {
     private WebDriver driver;
-    private WebDriverWait wait;
     private String product;
 
-    @FindBy(id = "twotabsearchtextbox")
-    private WebElement searchBox;
+    private AmazonSearchPage amazonSearchPage;
+    private AmazonResultPage amazonResultPage;
+    private AmazonProductDescriptionPage amazonProductDescriptionPage;
 
-    @FindBy(css ="input[value='Go']")
-    private WebElement searchBtn;
-
-        @FindBy(css = "span.a-size-medium")
-    private WebElement item;
-
-    @FindBy(xpath = "//span[@id='priceblock_ourprice']")
-    private WebElement price;
 
     public AmazonShopping(final WebDriver driver,String product)
     {
         this.driver = driver;
         this.product = product;
-        this.wait = new WebDriverWait(driver,15);
-        PageFactory.initElements(driver,this);
+        this.amazonSearchPage = PageFactory.initElements(driver,AmazonSearchPage.class);
+        this.amazonResultPage = PageFactory.initElements(driver,AmazonResultPage.class);
+        this.amazonProductDescriptionPage = PageFactory.initElements(driver,AmazonProductDescriptionPage.class);
     }
     @Override
     public void launchSite() {
-        this.driver.get("https://www.amazon.in");
+        this.amazonSearchPage.goTo();
     }
 
     @Override
     public void searchForProduct() {
-        this.searchBox.sendKeys(this.product);
-        this.searchBtn.click();
+        this.amazonSearchPage.search(this.product);
+
     }
 
     @Override
     public void selectProduct() {
-                wait.until((driver1 -> item.isDisplayed()));
-                item.click();
+        this.amazonResultPage.selectProduct();
        }
 
     @Override
     public void buy() {
-        driver.getTitle();
-        String parentWindow = driver.getWindowHandle();
-        Set<String> handles =  driver.getWindowHandles();
-        for(String windowHandle  : handles) {
-            if (!windowHandle.equals(parentWindow)) {
-                driver.switchTo().window(windowHandle);
-                wait.until((driver1 -> price.isDisplayed()));
-                System.out.println(this.price.getText());
-            }
-        }
+        this.amazonProductDescriptionPage.buy();
     }
 }
