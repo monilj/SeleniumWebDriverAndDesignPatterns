@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import sun.applet.Main;
 
+import java.util.function.Consumer;
+
 public class MainPage {
     public WebDriver driver;
 
@@ -34,16 +36,20 @@ public class MainPage {
     public void goToSite(){
         this.driver.get("https://vins-udemy.s3.amazonaws.com/ds/main.html");
     }
-    public FrameA getFrameObjectA(){
+    public void onFrameA(Consumer<FrameA> consumer){
+        driver.switchTo().frame(frameA);
+        consumer.accept(frameObjectA);
         this.driver.switchTo().defaultContent();
-        this.driver.switchTo().frame(frameA);
-        return frameObjectA;
     }
-
-    public FrameB getFrameObjectB(){
+    public void onFrameB(Consumer<FrameB> consumer){
+        driver.switchTo().frame(frameB);
+        consumer.accept(frameObjectB);
         this.driver.switchTo().defaultContent();
-        this.driver.switchTo().frame(frameB);
-        return frameObjectB;
+    }
+    public void onFrameC(Consumer<FrameC> consumer){
+        driver.switchTo().frame(frameC);
+        consumer.accept(frameObjectC);
+        this.driver.switchTo().defaultContent();
     }
 
 
