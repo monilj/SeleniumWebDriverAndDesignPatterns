@@ -15,9 +15,8 @@ public class FrameTest extends BaseTest {
     @Test
     public void frameTest(){
         this.mainPage.goToSite();
-        this.mainPage.getFrameObjectA().setFirstName("fn1");
-        this.mainPage.getFrameObjectB().setFirstName("fn2");
-
+       this.mainPage.onFrameA(a -> a.setFirstName("fn1"));
+        this.mainPage.onFrameA(a -> a.setLastName("ln1"));
     }
 }
 
