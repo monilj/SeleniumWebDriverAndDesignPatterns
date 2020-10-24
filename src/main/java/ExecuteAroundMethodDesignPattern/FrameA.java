@@ -14,7 +14,7 @@ public class FrameA {
     @FindBy(name = "addr")
     private WebElement address;
 
-    @FindBy(name = "area")
+    @FindBy(id = "area")
     private WebElement message;
 
     public void setFirstName(String firstName) {
