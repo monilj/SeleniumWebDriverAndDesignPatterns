@@ -34,4 +34,15 @@ public class MainPage {
     public void goToSite(){
         this.driver.get("https://vins-udemy.s3.amazonaws.com/ds/main.html");
     }
+    public FrameA getFrameObjectA(){
+        this.driver.switchTo().frame(frameA);
+        return frameObjectA;
+    }
+
+    public FrameB getFrameObjectB(){
+        this.driver.switchTo().frame(frameB);
+        return frameObjectB;
+    }
+
+
 }
