@@ -26,7 +26,7 @@ public class Decorators {
 
 //    role selection
     private static final Consumer<DashBoardPage> adminSelection = (dashBoardPage) -> dashBoardPage.selectRole("admin");
-    private static final Consumer<DashBoardPage> superUserSelection = (dashBoardPage) -> dashBoardPage.selectRole("superUser");
+    private static final Consumer<DashBoardPage> superUserSelection = (dashBoardPage) -> dashBoardPage.selectRole("superuser");
     private static final Consumer<DashBoardPage> guestSelection = (dashBoardPage) -> dashBoardPage.selectRole("guest");
 
 //    user role pages
@@ -38,7 +38,7 @@ public class Decorators {
     public static final Consumer<DashBoardPage> superUserPage = superUserSelection.andThen(guestComponentPresent)
             .andThen(superUserComponentPresent).andThen(adminComponentNotPresent);
 //    Admin Role
-    public static final Consumer<DashBoardPage> adminUserPage = superUserSelection.andThen(guestComponentPresent)
+    public static final Consumer<DashBoardPage> adminUserPage = adminSelection.andThen(guestComponentPresent)
             .andThen(superUserComponentPresent).andThen(adminComponentPresent);
 
 }
